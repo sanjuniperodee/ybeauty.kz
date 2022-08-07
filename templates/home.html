@@ -1,0 +1,309 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <style>
+
+.container{
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+.wrapper {
+  width: 270px;
+  height: 480px;
+  background: white;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px 10px 10px 10px;
+  /*box-shadow: 0;*/
+  transform: scale(0.95);
+  transition: box-shadow 0.5s, transform 0.5s;
+}
+.wrapper:hover {
+  transform: scale(1);
+  box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);
+}
+.wrapper .container {
+  width: 100%;
+  height: 100%;
+padding-left: 0;
+padding-right: 0;
+}
+.wrapper .container .top {
+  height: 80%;
+  width: 100%;
+
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
+}
+.wrapper .container .bottom {
+  width: 200%;
+  height: 20%;
+  transition: transform 0.5s;
+}
+.wrapper .container .bottom h1 {
+  margin: 0;
+  padding: 0;
+}
+.wrapper .container .bottom p {
+  margin: 0;
+  padding: 0;
+}
+.wrapper .container .bottom .left {
+  height: 100%;
+  width: 50%;
+  background: #f4f4f4;
+  position: relative;
+  float: left;
+}
+.wrapper .container .bottom .left .details {
+  padding: 20px;
+  float: left;
+  width: calc(70% - 40px);
+}
+.wrapper .container .bottom .left .buy {
+  float: right;
+  width: calc(30% - 2px);
+  height: 100%;
+  background: #f1f1f1;
+  transition: background 0.5s;
+  border-left: solid thin rgba(0, 0, 0, 0.1);
+}
+.wrapper .container .bottom .left .buy i {
+  font-size: 30px;
+  padding: 30px;
+  color: #254053;
+  transition: transform 0.5s;
+}
+.wrapper .container .bottom .left .buy:hover {
+  background: #A6CDDE;
+}
+.wrapper .container .bottom .left .buy:hover i {
+  transform: translateY(5px);
+  color: #00394B;
+}
+.wrapper .container .bottom .right .details {
+  padding: 20px;
+  float: right;
+  width: calc(70% - 40px);
+}
+.wrapper .container .bottom .right .done i {
+  font-size: 30px;
+  padding: 30px;
+  color: white;
+}
+.wrapper .container .bottom .right .remove:hover i {
+  transform: translateY(5px);
+}
+.wrapper .container .bottom .right .remove i {
+  transition: transform 0.5s;
+  font-size: 30px;
+  padding: 30px;
+  color: white;
+}
+    </style>
+    {% include "navbar-home.html" %}
+  <main style="margin: 0 4%; align-items: center" >
+  <hr>
+      <section class="text-center mb-4" style="margin-top: 80px">
+        <h1>Парфюмы</h1>
+        <div class="row wow fadeIn">
+
+          {% for item in object_list %}
+          <div class="col-lg-3 col-md-6 mb-4" style="align-items: center; justify-content: space-around">
+              <div class="wrapper" style="align-items: center">
+                  <div class="container">
+                      <a href="{{ item.get_absolute_url }}">
+                    <div class="top" style="background: url('{{ item.image.url }}') no-repeat; background-size: 250px 330px; padding-bottom: 0">
+                    </div>
+                      </a>
+                    <div class="bottom">
+                      <div class="left">
+                        <div class="details">
+                          <h7>{{ item.title }}</h7>
+
+                        </div>
+                          <a href="{{ item.get_add_to_cart_url }}">
+                              <div class="buy"><i class="material-icons" style="padding-bottom: 10px">add_shopping_cart</i> <p style="font-weight: bold; color: black">{{ item.get_price }}KZT</p></div>
+                          </a>
+
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+        </div>
+        <a href="http://127.0.0.1:8000/filter/P?page=1"><h1>Смотреть еще</h1></a>
+      </section>
+<hr>
+
+  <section class="text-center mb-4" style="margin-top: 80px">
+        <h1>Уход за Кожей</h1>
+        <div class="row wow fadeIn">
+
+          {% for item in object_list2 %}
+          <div class="col-lg-3 col-md-6 mb-4">
+              <div class="wrapper">
+                  <div class="container">
+                      <a href="{{ item.get_absolute_url }}">
+                    <div class="top" style="background: url('{{ item.image.url }}') no-repeat; background-size: 250px 330px; padding-bottom: 0">
+                    </div>
+                      </a>
+                    <div class="bottom">
+                      <div class="left">
+                        <div class="details">
+                          <h7>{{ item.title }}</h7>
+
+                        </div>
+                          <a href="{{ item.get_add_to_cart_url }}">
+                              <div class="buy"><i class="material-icons" style="padding-bottom: 10px">add_shopping_cart</i> <p style="font-weight: bold; color: black">{{ item.get_price }}KZT</p></div>
+                          </a>
+
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+        </div>
+        <a href="http://127.0.0.1:8000/filter/H?page=1"><h1>Смотреть еще</h1></a>
+      </section>
+<hr>
+  <section class="text-center mb-4" style="margin-top: 80px">
+        <h1>Уход за волосами</h1>
+        <div class="row wow fadeIn">
+
+          {% for item in object_list3 %}
+          <div class="col-lg-3 col-md-6 mb-4">
+              <div class="wrapper">
+                  <div class="container">
+                      <a href="{{ item.get_absolute_url }}">
+                    <div class="top" style="background: url('{{ item.image.url }}') no-repeat; background-size: 250px 330px; padding-bottom: 0">
+                    </div>
+                      </a>
+                    <div class="bottom">
+                      <div class="left">
+                        <div class="details">
+                          <h7>{{ item.title }}</h7>
+
+                        </div>
+                          <a href="{{ item.get_add_to_cart_url }}">
+                              <div class="buy"><i class="material-icons" style="padding-bottom: 10px">add_shopping_cart</i> <p style="font-weight: bold; color: black">{{ item.get_price }}KZT</p></div>
+                          </a>
+
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+        </div>
+          <a href="http://127.0.0.1:8000/filter/DD?page=1"><h1>Уход за Кожей</h1></a>
+      </section>
+<hr>
+  <section class="text-center mb-4" style="margin-top: 80px">
+        <h1>Декоративная косметика</h1>
+        <div class="row wow fadeIn">
+
+          {% for item in object_list4 %}
+          <div class="col-lg-3 col-md-6 mb-4">
+              <div class="wrapper">
+                  <div class="container">
+                      <a href="{{ item.get_absolute_url }}">
+                    <div class="top" style="background: url('{{ item.image.url }}') no-repeat; background-size: 250px 330px; padding-bottom: 0">
+                    </div>
+                      </a>
+                    <div class="bottom">
+                      <div class="left">
+                        <div class="details">
+                          <h7>{{ item.title }}</h7>
+
+                        </div>
+                          <a href="{{ item.get_add_to_cart_url }}">
+                              <div class="buy"><i class="material-icons" style="padding-bottom: 10px">add_shopping_cart</i> <p style="font-weight: bold; color: black">{{ item.get_price }}KZT</p></div>
+                          </a>
+
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+        </div>
+        <a href="http://127.0.0.1:8000/filter/DK?page=1"><h1>Смотреть еще</h1></a>
+      </section>
+<hr>
+  <section class="text-center mb-4" style="margin-top: 80px">
+        <h1>Подарочный Набор</h1>
+        <div class="row wow fadeIn">
+
+          {% for item in object_list5 %}
+          <div class="col-lg-3 col-md-6 mb-4">
+              <div class="wrapper">
+                  <div class="container">
+                      <a href="{{ item.get_absolute_url }}">
+                    <div class="top" style="background: url('{{ item.image.url }}') no-repeat; background-size: 250px 330px; padding-bottom: 0">
+                    </div>
+                      </a>
+                    <div class="bottom">
+                      <div class="left">
+                        <div class="details">
+                          <h7>{{ item.title }}</h7>
+
+                        </div>
+                          <a href="{{ item.get_add_to_cart_url }}">
+                              <div class="buy"><i class="material-icons" style="padding-bottom: 10px">add_shopping_cart</i> <p style="font-weight: bold; color: black">{{ item.get_price }}KZT</p></div>
+                          </a>
+
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <a href="http://127.0.0.1:8000/filter/PN?page=1"><h1>Смотреть еще</h1></a>
+      </section>
+
+<hr>
+  <section class="text-center mb-4" style="margin-top: 80px">
+        <h1>Для дома</h1>
+        <div class="row wow fadeIn">
+
+          {% for item in object_list6 %}
+          <div class="col-lg-3 col-md-6 mb-4">
+              <div class="wrapper">
+                  <div class="container">
+                      <a href="{{ item.get_absolute_url }}">
+                    <div class="top" style="background: url('{{ item.image.url }}') no-repeat; background-size: 250px 330px; padding-bottom: 0">
+                    </div>
+                      </a>
+                    <div class="bottom">
+                      <div class="left">
+                        <div class="details">
+                          <h7>{{ item.title }}</h7>
+
+                        </div>
+                          <a href="{{ item.get_add_to_cart_url }}">
+                              <div class="buy"><i class="material-icons" style="padding-bottom: 10px">add_shopping_cart</i> <p style="font-weight: bold; color: black">{{ item.get_price }}KZT</p></div>
+                          </a>
+
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+        </div>
+        <a href="http://127.0.0.1:8000/filter/DD?page=1"><h1>Смотреть еще</h1></a>
+      </section>
+  </main>
+{% endblock content %}
+
+
+

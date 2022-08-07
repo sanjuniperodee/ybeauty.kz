@@ -1,0 +1,248 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <style>
+
+.container{
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+.wrapper {
+  width: 85%;
+  height: 480px;
+  background: white;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px 10px 10px 10px;
+  transform: scale(0.95);
+  transition: box-shadow 0.5s, transform 0.5s;
+}
+.wrapper:hover {
+  transform: scale(1);
+  box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);
+}
+.wrapper .container {
+    padding-left: 0;
+    padding-right: 0;
+  width: 100%;
+  height: 100%;
+}
+.wrapper .container .top {
+  height: 80%;
+  width: 100%;
+
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
+}
+.wrapper .container .bottom {
+  width: 200%;
+  height: 20%;
+  transition: transform 0.5s;
+}
+.wrapper .container .bottom.clicked {
+  transform: translateX(-50%);
+}
+.wrapper .container .bottom h1 {
+  margin: 0;
+  padding: 0;
+}
+.wrapper .container .bottom p {
+  margin: 0;
+  padding: 0;
+}
+.wrapper .container .bottom .left {
+  height: 100%;
+  width: 50%;
+  background: #f4f4f4;
+  position: relative;
+  float: left;
+}
+.wrapper .container .bottom .left .details {
+  padding: 20px;
+  float: left;
+  width: calc(70% - 40px);
+}
+.wrapper .container .bottom .left .buy {
+  float: right;
+  width: calc(30% - 2px);
+  height: 100%;
+  background: #f1f1f1;
+  transition: background 0.5s;
+  border-left: solid thin rgba(0, 0, 0, 0.1);
+}
+.wrapper .container .bottom .left .buy i {
+  font-size: 30px;
+  padding: 30px;
+  color: #254053;
+  transition: transform 0.5s;
+}
+.wrapper .container .bottom .left .buy:hover {
+  background: #A6CDDE;
+}
+.wrapper .container .bottom .left .buy:hover i {
+  transform: translateY(5px);
+  color: #00394B;
+}
+.wrapper .container .bottom .right .details {
+  padding: 20px;
+  float: right;
+  width: calc(70% - 40px);
+}
+.wrapper .container .bottom .right .done i {
+  font-size: 30px;
+  padding: 30px;
+  color: white;
+}
+.wrapper .container .bottom .right .remove:hover i {
+  transform: translateY(5px);
+}
+.wrapper .container .bottom .right .remove i {
+  transition: transform 0.5s;
+  font-size: 30px;
+  padding: 30px;
+  color: white;
+}
+.navbarr{
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    height: 70px;
+    background-color: rgba(236, 236, 236, 0.7);
+    width: 100%;
+    margin: 2% 0;
+    border-radius: 10px
+}
+.navbarr .nav-link{
+    {#font-family: 'Domine', serif;#}
+    {#font-family: 'Lato', sans-serif;#}
+    width: 100%;
+    text-align: center;
+    color: black;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: .2s linear;
+
+}
+.navbarr .nav-link:hover{
+    box-shadow: 200px 0 0 0 rgba(0,0,0,.3) inset;
+}
+</style>
+    {% include "navbar-home.html" %}
+    <main style="margin: 0 4%;">
+      <nav>
+          <div class="navbarr">
+
+              <a class="nav-link" href="{% url 'core:home1' 'P' %}" {% if str == 'P'%} style="box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;" {% endif %}>Парфюмерия</a>
+              <a class="nav-link" href="{% url 'core:home1' 'UK' %}" {% if str == 'UK'%} style="box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;" {% endif %}>Уход за Кожей</a>
+              <a class="nav-link" href="{% url 'core:home1' 'H' %}" {% if str == 'H'%} style="box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;" {% endif %}>Для Волос</a>
+              <a class="nav-link" href="{% url 'core:home1' 'DK' %}" {% if str == 'DK'%} style="box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;" {% endif %}>Декоративная Косметика</a>
+              <a class="nav-link" href="{% url 'core:home1' 'PN' %}" {% if str == 'PN'%} style="box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;" {% endif %}>Подарочный Набор</a>
+              <a class="nav-link" href="{% url 'core:home1' 'DD' %}" {% if str == 'DD'%} style="box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;" {% endif %}>Для Дома</a>
+        </div>
+      </nav>
+    <div style="display: flex; justify-content: space-between">
+        {% if str == 'P' %}
+        <fieldset>
+            <legend>Выберите бренд</legend>
+            {% for brand in brands %}
+                <div>
+              <input type="checkbox" id="scales" name="scales"
+                     checked>
+              <label for="scales">{{ brand.title }}</label>
+            </div>
+            {% endfor %}
+        <button style="width: 150px; color: #fff; background: #2f2f2f; border-radius: 20px; text-align: center; border: none; font-size: 15px; padding: 3px">
+            Submit
+        </button>
+        </fieldset>
+        {% endif %}
+        {% include 'search_price.html'%}
+
+    </div>
+
+      <!--/.Navbar-->
+      <!--Section: Products v.3-->
+      <section class="text-center mb-4" style="margin-top: 80px">
+        <h1> {% if str == 'P' %}
+            Парфюмы
+            {% elif str == 'UK' %}
+            Уход за Кожей
+            {% elif str == 'H'%}
+            Уход за Волосами
+            {% elif str == 'DK' %}
+            Декоративная Косметика
+            {% elif str == 'PN' %}
+            Подарочный Набор
+            {% elif str == 'DD' %}
+            Для Дома
+        {% endif %}</h1>
+        <div class="row wow fadeIn">
+        <hr>
+          {% for item in object_list %}
+          <div class="col-lg-3 col-md-6 mb-4">
+              <div class="wrapper">
+                  <div class="container">
+                      <a href="{{ item.get_absolute_url }}">
+                    <div class="top" style="background: url('{{ item.image.url }}') no-repeat; background-size: 250px 330px; padding-bottom: 0">
+                    </div>
+                      </a>
+                    <div class="bottom">
+                      <div class="left">
+                        <div class="details">
+                          <h7>{{ item.title }}</h7>
+
+                        </div>
+                          <a href="{{ item.get_add_to_cart_url }}">
+                              <div class="buy"><i class="material-icons" style="padding-bottom: 10px">add_shopping_cart</i> <p style="font-weight: bold; color: black">{{ item.get_price }}KZT</p></div>
+                          </a>
+
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+        </div>
+      </section>
+      <!--Section: Products v.3-->
+
+      <!--Pagination-->
+      {% if object_list.has_other_pages %}
+      <nav class="d-flex justify-content-center wow fadeIn">
+        <ul class="pagination pg-blue">
+          {% if object_list.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ object_list.previous_page_number }}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+          {% endif %}
+
+          <li class="page-item active">
+            <a class="page-link" href="?page={{ object_list.number }}">{{ object_list.number }}
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+
+          {% if object_list.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ object_list.next_page_number }}" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+      {% endif %}
+  </main>
+{% endblock content %}
+
+
+
