@@ -2,7 +2,7 @@ from .base import *
 
 DEBUG = config('DEBUG', cast=bool)
 ALLOWED_HOSTS = ['*']
-
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
