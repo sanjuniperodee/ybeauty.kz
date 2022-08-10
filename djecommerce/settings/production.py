@@ -1,6 +1,6 @@
 from .base import *
 
-DEBUG = config('DEBUG', cast=bool)
+DEBUG = True
 ALLOWED_HOSTS = ['*']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 AUTH_PASSWORD_VALIDATORS = [
