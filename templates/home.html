@@ -142,7 +142,7 @@ padding-right: 0;
           </div>
           {% endfor %}
         </div>
-        <a href="http://127.0.0.1:8000/filter/P?page=1"><h1>Смотреть еще</h1></a>
+        <a href="{% url 'core:home1' 'P' %}"><h1>Смотреть еще</h1></a>
       </section>
 <hr>
 
@@ -175,7 +175,7 @@ padding-right: 0;
           </div>
           {% endfor %}
         </div>
-        <a href="http://127.0.0.1:8000/filter/H?page=1"><h1>Смотреть еще</h1></a>
+        <a href="{% url 'core:home1' 'UK' %}"><h1>Смотреть еще</h1></a>
       </section>
 <hr>
   <section class="text-center mb-4" style="margin-top: 80px">
@@ -207,7 +207,7 @@ padding-right: 0;
           </div>
           {% endfor %}
         </div>
-          <a href="http://127.0.0.1:8000/filter/DD?page=1"><h1>Уход за Кожей</h1></a>
+          <a href="{% url 'core:home1' 'H' %}"><h1>Смотреть еще</h1></a>
       </section>
 <hr>
   <section class="text-center mb-4" style="margin-top: 80px">
@@ -239,7 +239,7 @@ padding-right: 0;
           </div>
           {% endfor %}
         </div>
-        <a href="http://127.0.0.1:8000/filter/DK?page=1"><h1>Смотреть еще</h1></a>
+        <a href="{% url 'core:home1' 'DK' %}"><h1>Смотреть еще</h1></a>
       </section>
 <hr>
   <section class="text-center mb-4" style="margin-top: 80px">
@@ -272,7 +272,7 @@ padding-right: 0;
           {% endfor %}
         </div>
 
-        <a href="http://127.0.0.1:8000/filter/PN?page=1"><h1>Смотреть еще</h1></a>
+        <a href="{% url 'core:home1' 'PN' %}"><h1>Смотреть еще</h1></a>
       </section>
 
 <hr>
@@ -305,7 +305,7 @@ padding-right: 0;
           </div>
           {% endfor %}
         </div>
-        <a href="http://127.0.0.1:8000/filter/DD?page=1"><h1>Смотреть еще</h1></a>
+        <a href="{% url 'core:home1' 'DD' %}"><h1>Смотреть еще</h1></a>
       </section>
   </main>
 {% endblock content %}
