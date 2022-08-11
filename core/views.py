@@ -12,6 +12,7 @@ from django.shortcuts import redirect
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.views.generic import ListView, DetailView, View
+from django.views.decorators.csrf import csrf_exempt
 
 from .forms import CheckoutForm, CouponForm, RefundForm, PaymentForm, Filter
 from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile, Brand, Firma
@@ -352,6 +353,7 @@ class HomeView(ListView):
     template_name = "home.html"
 
 
+@csrf_exempt
 def home1(request, ctg):
     object_list = Item.objects.filter(category=ctg).order_by('title')
     obj = []
@@ -368,6 +370,7 @@ def home1(request, ctg):
     return render(request, 'home2.html', context)
 
 
+@csrf_exempt
 def home(request):
     page_obj = Paginator(Item.objects.get_queryset().filter(category='P').order_by('title'), 4).get_page(request.GET.get('page'))
     page_obj2 = Paginator(Item.objects.get_queryset().filter(category='UK').order_by('title'), 4).get_page(request.GET.get('page'))
