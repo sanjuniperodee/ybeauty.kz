@@ -1,7 +1,7 @@
 from .base import *
 
 DEBUG = True
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO','https')
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
