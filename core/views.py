@@ -14,8 +14,9 @@ from django.utils import timezone
 from django.views.generic import ListView, DetailView, View
 from django.views.decorators.csrf import csrf_exempt
 
-from .forms import CheckoutForm, CouponForm, RefundForm, PaymentForm, Filter
-from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile, Brand, Firma
+from .forms import CheckoutForm, CouponForm, RefundForm, PaymentForm
+from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile, Brand
+
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -356,16 +357,21 @@ class HomeView(ListView):
 @csrf_exempt
 def home1(request, ctg):
     object_list = Item.objects.filter(category=ctg).order_by('title')
-    obj = []
-    for firm in Firma:
-        obj += object_list.filter(firm=firm)
+    brandy = []
+    brands = Brand.objects.get_queryset().order_by('title')
+    if request.method == 'POST':
+        brandy = request.POST.getlist('scales')
+        object_list = []
+        for brand in brandy:
+            object_list += Item.objects.filter(brand__title=brand)
     paginator = Paginator(object_list, 8)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
+        'brandy': brandy,
         'str': ctg,
         'object_list': page_obj,
-        'brands': Brand.objects.get_queryset().order_by('title'),
+        'brands': brands,
     }
     return render(request, 'home2.html', context)
 

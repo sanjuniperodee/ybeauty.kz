@@ -18,13 +18,8 @@ CATEGORY_CHOICES = (
 SUBCATEGORY = (
     ('Man', 'man'),
     ('Wom', 'woman'),
-    ('Nab', 'nabor')
-)
-
-LABEL_CHOICES = (
-    ('P', 'primary'),
-    ('S', 'secondary'),
-    ('D', 'danger')
+    ('Nab', 'nabor'),
+    ('UNI', 'unisex')
 )
 
 ADDRESS_CHOICES = (
@@ -32,14 +27,6 @@ ADDRESS_CHOICES = (
     ('S', 'Shipping'),
 )
 
-Firma = (
-    ('ARM','ARMAF'),
-    ('FLV','Flavia'),
-    ('OROS','OROS'),
-    ('HM', 'HAMIDI'),
-    ('LT', 'Lattafa'),
-    ('NB', 'Наборы')
-)
 
 class UserProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -58,13 +45,12 @@ class Brand(models.Model):
 
 
 class Item(models.Model):
-    firm = models.CharField(choices=Firma, default='First', max_length=10)
+    volume = models.IntegerField(default=100)
     title = models.CharField(max_length=100)
     price = models.FloatField()
     discount_price = models.FloatField(blank=True, null=True)
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=2)
     subcategory = models.CharField(choices=SUBCATEGORY, default='Man', max_length=3)
-    label = models.CharField(choices=LABEL_CHOICES, max_length=1)
     slug = models.SlugField()
     brand = models.ForeignKey(Brand, null=True, on_delete=True)
     description = models.TextField(default="NONE")

@@ -1,26 +1,13 @@
 from django import forms
 from django_countries.fields import CountryField
 from django_countries.widgets import CountrySelectWidget
+from .models import *
 
 
 PAYMENT_CHOICES = (
     ('S', 'Stripe'),
     ('P', 'PayPal')
 )
-
-Brands = (
-    ('ARM','ARMAF'),
-    ('FLV','Flavia'),
-    ('OROS','OROS'),
-    ('HM', 'HAMIDI'),
-    ('LT', 'Lattafa')
-)
-
-
-class Filter(forms.Form):
-    brand_options = forms.ChoiceField(widget=forms.RadioSelect, choices=Brands)
-    min_price = forms.IntegerField(required=False)
-    max_price = forms.IntegerField(required=False)
 
 
 class CheckoutForm(forms.Form):

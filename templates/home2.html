@@ -115,22 +115,29 @@
     background-color: rgba(236, 236, 236, 0.7);
     width: 100%;
     margin: 2% 0;
-    border-radius: 10px
+    border-radius: 2%
 }
 .navbarr .nav-link{
-    {#font-family: 'Domine', serif;#}
-    {#font-family: 'Lato', sans-serif;#}
-    width: 100%;
+    width: 80%;
     text-align: center;
     color: black;
     display: inline-block;
     cursor: pointer;
     border-radius: 10px;
     transition: .2s linear;
-
 }
 .navbarr .nav-link:hover{
     box-shadow: 200px 0 0 0 rgba(0,0,0,.3) inset;
+}
+.filter{
+    display: flex; 
+    justify-content: space-between;
+    
+}
+@media screen and (max-width: 800px) {
+  .filter {
+      display: initial;
+  }
 }
 </style>
     {% include "navbar-home.html" %}
@@ -138,7 +145,7 @@
       <nav>
           <div class="navbarr">
 
-              <a class="nav-link" href="{% url 'core:home1' 'P' %}" {% if str == 'P'%} style="box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;" {% endif %}>Парфюмерия</a>
+              <a class="nav-link" href="{% url 'core:home1' 'P' %}" {% if str == 'P'%} style="" {% endif %}>Парфюмерия</a>
               <a class="nav-link" href="{% url 'core:home1' 'UK' %}" {% if str == 'UK'%} style="box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;" {% endif %}>Уход за Кожей</a>
               <a class="nav-link" href="{% url 'core:home1' 'H' %}" {% if str == 'H'%} style="box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;" {% endif %}>Для Волос</a>
               <a class="nav-link" href="{% url 'core:home1' 'DK' %}" {% if str == 'DK'%} style="box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;" {% endif %}>Декоративная Косметика</a>
@@ -146,25 +153,30 @@
               <a class="nav-link" href="{% url 'core:home1' 'DD' %}" {% if str == 'DD'%} style="box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;" {% endif %}>Для Дома</a>
         </div>
       </nav>
-    <div style="display: flex; justify-content: space-between">
-        {% if str == 'P' %}
-        <fieldset>
-            <legend>Выберите бренд</legend>
+    <legend>Выберите бренд</legend>
+    <form method="post">
+    <div class="filter">
+        {% if str == 'P'%}
+        <fieldset style="display: flex; justify-content: space-between; width: 100%;">
             {% for brand in brands %}
-                <div>
+            <div>
               <input type="checkbox" id="scales" name="scales"
-                     checked>
+                      value="{{ brand.title }}" {% if brand.title in brandy %}
+                                                    checked
+                                                {% endif %}>
               <label for="scales">{{ brand.title }}</label>
             </div>
             {% endfor %}
-        <button style="width: 150px; color: #fff; background: #2f2f2f; border-radius: 20px; text-align: center; border: none; font-size: 15px; padding: 3px">
-            Submit
-        </button>
         </fieldset>
         {% endif %}
-        {% include 'search_price.html'%}
-
     </div>
+    <button  type="submit"  style="width: 150px; color: #fff; background: #2f2f2f; border-radius: 20px; text-align: center; border: none; font-size: 15px; padding: 3px">
+        Submit
+    </button>
+    </form>
+
+
+    {% include 'search_price.html'%}
 
       <!--/.Navbar-->
       <!--Section: Products v.3-->
@@ -189,7 +201,7 @@
               <div class="wrapper">
                   <div class="container">
                       <a href="{{ item.get_absolute_url }}">
-                    <div class="top" style="background: url('{{ item.image.url }}') no-repeat; background-size: 250px 330px; padding-bottom: 0">
+                    <div class="top" style="background: url('{{ item.image.url }}') no-repeat; background-size: 100% 330px; padding-bottom: 0">
                     </div>
                       </a>
                     <div class="bottom">
