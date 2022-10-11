@@ -356,15 +356,15 @@ class HomeView(ListView):
 
 @csrf_exempt
 def home1(request, ctg):
-    object_list = Item.objects.filter(category=ctg).order_by('title')
+    object_list = Item.objects.filter(category__title=ctg).order_by('title')
     brandy = []
     brands = Brand.objects.get_queryset().order_by('title')
     if request.method == 'POST':
         brandy = request.POST.getlist('scales')
         object_list = []
         for brand in brandy:
-            object_list += Item.objects.filter(brand__title=brand)
-    paginator = Paginator(object_list, 8)
+            object_list += Item.objects.filter(category__brand__title=brand)
+    paginator = Paginator(object_list, 12)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -373,17 +373,17 @@ def home1(request, ctg):
         'object_list': page_obj,
         'brands': brands,
     }
-    return render(request, 'home2.html', context)
+    return render(request, 'shopping_page.html', context)
 
 
 @csrf_exempt
 def home(request):
-    page_obj = Paginator(Item.objects.get_queryset().filter(category='P').order_by('title'), 4).get_page(request.GET.get('page'))
-    page_obj2 = Paginator(Item.objects.get_queryset().filter(category='UK').order_by('title'), 4).get_page(request.GET.get('page'))
-    page_obj3 = Paginator(Item.objects.get_queryset().filter(category='H').order_by('title'), 4).get_page(request.GET.get('page'))
-    page_obj4 = Paginator(Item.objects.get_queryset().filter(category='DK').order_by('title'), 4).get_page(request.GET.get('page'))
-    page_obj5 = Paginator(Item.objects.get_queryset().filter(category='PN').order_by('title'), 4).get_page(request.GET.get('page'))
-    page_obj6 = Paginator(Item.objects.get_queryset().filter(category='DD').order_by('title'), 4).get_page(request.GET.get('page'))
+    page_obj = Paginator(Item.objects.get_queryset().filter(category__title='Парфюмерия').order_by('title'), 4).get_page(request.GET.get('page'))
+    page_obj2 = Paginator(Item.objects.get_queryset().filter(category__title='Уход за Кожей').order_by('title'), 4).get_page(request.GET.get('page'))
+    page_obj3 = Paginator(Item.objects.get_queryset().filter(category__title='Уход за Волосами').order_by('title'), 4).get_page(request.GET.get('page'))
+    page_obj4 = Paginator(Item.objects.get_queryset().filter(category__title='Декоративная Косметика').order_by('title'), 4).get_page(request.GET.get('page'))
+    page_obj5 = Paginator(Item.objects.get_queryset().filter(category__title='Подарочный Набор').order_by('title'), 4).get_page(request.GET.get('page'))
+    page_obj6 = Paginator(Item.objects.get_queryset().filter(category__title='Для дома').order_by('title'), 4).get_page(request.GET.get('page'))
     context = {
         'str': 'none',
         'object_list': page_obj,
@@ -394,7 +394,7 @@ def home(request):
         'object_list6': page_obj6
 
     }
-    return render(request, 'home.html', context)
+    return render(request, 'home_page.html', context)
 
 
 def carousel(request):

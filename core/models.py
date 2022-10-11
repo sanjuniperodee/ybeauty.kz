@@ -1,26 +1,9 @@
 from django.db.models.signals import post_save
 from django.conf import settings
 from django.db import models
-from django.db.models import Sum
 from django.shortcuts import reverse
 from django_countries.fields import CountryField
 
-
-CATEGORY_CHOICES = (
-    ('P', "Парфюм"),
-    ('UK', "Уход за кожей"),
-    ('H', "Уход за волосами"),
-    ('DK', "Декоративная косметика"),
-    ('PN', "Подарочный набор"),
-    ('DD', "Для дома")
-)
-
-SUBCATEGORY = (
-    ('Man', 'man'),
-    ('Wom', 'woman'),
-    ('Nab', 'nabor'),
-    ('UNI', 'unisex')
-)
 
 ADDRESS_CHOICES = (
     ('B', 'Billing'),
@@ -28,10 +11,26 @@ ADDRESS_CHOICES = (
 )
 
 
+class SubCategory(models.Model):
+    title = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.title
+
+
+class Category(models.Model):
+    title = models.CharField(max_length=30)
+    subcategory = models.ForeignKey(SubCategory, on_delete=True, default=None)
+
+    def __str__(self):
+        return self.title + " " + self.subcategory.title
+
+
 class UserProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     stripe_customer_id = models.CharField(max_length=50, blank=True, null=True)
     one_click_purchasing = models.BooleanField(default=False)
+    image = models.ImageField(default=None)
 
     def __str__(self):
         return self.user.username
@@ -39,6 +38,7 @@ class UserProfile(models.Model):
 
 class Brand(models.Model):
     title = models.CharField(max_length=15)
+    category = models.ForeignKey(Category, null=True, on_delete=True, default=None)
 
     def __str__(self):
         return self.title
@@ -49,8 +49,7 @@ class Item(models.Model):
     title = models.CharField(max_length=100)
     price = models.FloatField()
     discount_price = models.FloatField(blank=True, null=True)
-    category = models.CharField(choices=CATEGORY_CHOICES, max_length=2)
-    subcategory = models.CharField(choices=SUBCATEGORY, default='Man', max_length=3)
+    category = models.ForeignKey(Category, on_delete=True, default=None)
     slug = models.SlugField()
     brand = models.ForeignKey(Brand, null=True, on_delete=True)
     description = models.TextField(default="NONE")
