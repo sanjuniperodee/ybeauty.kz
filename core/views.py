@@ -378,12 +378,12 @@ def home1(request, ctg):
 
 @csrf_exempt
 def home(request):
-    page_obj = Paginator(Item.objects.get_queryset().filter(category__title='Парфюмерия').order_by('title'), 4).get_page(request.GET.get('page'))
+    page_obj = Paginator(Item.objects.get_queryset().filter(category__title='Парфюмы').order_by('title'), 4).get_page(request.GET.get('page'))
     page_obj2 = Paginator(Item.objects.get_queryset().filter(category__title='Уход за Кожей').order_by('title'), 4).get_page(request.GET.get('page'))
     page_obj3 = Paginator(Item.objects.get_queryset().filter(category__title='Уход за Волосами').order_by('title'), 4).get_page(request.GET.get('page'))
     page_obj4 = Paginator(Item.objects.get_queryset().filter(category__title='Декоративная Косметика').order_by('title'), 4).get_page(request.GET.get('page'))
     page_obj5 = Paginator(Item.objects.get_queryset().filter(category__title='Подарочный Набор').order_by('title'), 4).get_page(request.GET.get('page'))
-    page_obj6 = Paginator(Item.objects.get_queryset().filter(category__title='Для дома').order_by('title'), 4).get_page(request.GET.get('page'))
+    page_obj6 = Paginator(Item.objects.get_queryset().filter(category__title='Для Дома').order_by('title'), 4).get_page(request.GET.get('page'))
     context = {
         'str': 'none',
         'object_list': page_obj,
