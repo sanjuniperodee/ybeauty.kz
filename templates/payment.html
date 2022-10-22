@@ -134,7 +134,7 @@ button:hover {
             </div>
 
             <div class="new-card-form">
-              <form action="." method="post" class="stripe-form" id="stripe-form">
+              <form action="https://api.paybox.money/v1/merchant/545774/card/pay" method="post" class="stripe-form" id="stripe-form">
                   {% csrf_token %}
                   <div class="stripe-form-row" id="creditCard">
                       <label for="card-element" id="stripeBtnLabel">
