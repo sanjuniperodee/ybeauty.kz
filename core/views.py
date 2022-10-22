@@ -105,6 +105,7 @@ class CheckoutView(View):
                     'pg_success_url_method': 'GET',
                     'pg_failure_url_method': 'GET',
                 }
+                print(data)
                 result = requests.post('https://api.paybox.money/init_payment.php', params=data)
                 sg = ""
                 result = str(result.text)
@@ -353,6 +354,11 @@ def order_summary(request):
 class ItemDetailView(DetailView):
     model = Item
     template_name = "detail.html"
+    s = '''"""dfgfdgfdg
+    """"
+    ###l
+    ike THIS 
+    '''
 
 
 @login_required
