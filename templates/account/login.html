@@ -1,12 +1,31 @@
-{% extends "account/base.html" %}
 {% load i18n %}
 {% load account socialaccount %}
 {% load crispy_forms_tags %}
+{% load static %}
+{% load cart_template_tags %}
+<head>
+    <meta charset="utf-8">
+    <title>Ybeauty.kz</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+    {% trans "Sign In" %}
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
-{% block head_title %}{% trans "Sign In" %}{% endblock %}
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
-{% block content %}
-  <main>
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'lib/animate/animate.min.css'%}" rel="stylesheet">
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static  'css/style4.css'%}" rel="stylesheet">
+</head>
+<body>
+    {% include "navbar.html" %}
     <div class="container">
       <section class="mb-4">
         <div class="row wow fadeIn">
@@ -50,6 +69,6 @@
         </div>
       </section>
     </div>
-  </main>
+    {% include "footer.html" %}
+</body>
 
-{% endblock %}
