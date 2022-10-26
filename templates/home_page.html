@@ -10,8 +10,9 @@
     <meta content="Free HTML Templates" name="description">
 
     <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -23,28 +24,8 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{% static  'css/style4.css'%}" rel="stylesheet">
     <style>
-        .my-nav{
-            background-color: rgba(236, 236, 236, 0.4);
-            position: absolute;
-            z-index: 10;
-            width: 100%;
-            }
-
-            .carousel-item {
-              height: 100vh;
-              background: no-repeat center center scroll;
-              -webkit-background-size: cover;
-              -moz-background-size: cover;
-              -o-background-size: cover;
-              background-size: cover;
-            }
-        .btn-search{
-            border-radius: 7px;
-        }
-        @media (max-width: 768px) {
-            .carousel-inner{
-                height: 500px;
-            }
+        *{
+            font-family: 'Cormorant', serif;
 
         }
     </style>
@@ -165,6 +146,8 @@
             </div>
         </div>
     </div>
+
+
     <!-- Categories End -->
 
 
@@ -201,6 +184,7 @@
             </div>
             {% endfor %}
         </div>
+    <a style="text-align: center;" href="{% url 'core:home1' 'Парфюмы' 'Женский'%}"> Смотреть еще </a>
     </div>
     <!-- Products End -->
 
@@ -274,6 +258,7 @@
             {% endfor %}
         </div>
     </div>
+<a href="{% url 'core:home1' 'Уход за Волосами' 'Кондиционер'%}">Смотреть еще </a>
     <!-- Products End -->
 
     <!-- Decorative  Start -->
@@ -309,6 +294,7 @@
             {% endfor %}
         </div>
     </div>
+    <a href="{% url 'core:home1' 'Декоративная Косметика' 'None'%}">Смотреть еще </a>
     <!-- Products End -->
 
     <!-- Skin Care Start -->
@@ -344,6 +330,7 @@
             {% endfor %}
         </div>
     </div>
+<a href="{% url 'core:home1' 'Подарочный Набор' 'Женский'%}">Смотреть еще </a>
     <!-- Products End -->
 
     <!-- Skin Care Start -->
@@ -379,6 +366,7 @@
             {% endfor %}
         </div>
     </div>
+    <a href="{% url 'core:home1' 'Для Дома' 'Бахуры'%}">Смотреть еще </a>
     <!-- Products End -->
 
     {% include "footer.html" %}
