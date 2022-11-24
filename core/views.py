@@ -87,8 +87,8 @@ class CheckoutView(View):
                     order.shipping_address = shipping_address
                     order.save()
 
-                subprocess.call("php C:\\Users\\77082\\Desktop\\project\\ybeauty.kz\\core\\smt.php " + str(order.id) + " " + str(int(order.get_total())), shell=True)
-                print(os.path.exists("C:\\Users\\77082\\Desktop\\project\\ybeauty.kz\\core\\testfile.txt"))
+                subprocess.call("php smt.php " + str(order.id) + " " + str(int(order.get_total())), shell=True)
+                print(os.path.exists("testfile.txt"))
 
                 content = ""
                 with open("testfile.txt") as f:
@@ -290,15 +290,19 @@ class HomeView(ListView):
 @csrf_exempt
 def home1(request, ctg, ctg2):
     object_list = Item.objects.filter(category__title=ctg, category__subcategory__title=ctg2).order_by('title')
-    brandy = []
     brands = Brand.objects.filter(category__title=ctg, category__subcategory__title=ctg2)
     print(brands)
-    print(ctg2)
+    brandy = []
     if request.method == 'POST':
         brandy = request.POST.getlist('scales')
+        print(brandy)
         object_list = []
+        i = 0
         for brand in brandy:
-            object_list += Item.objects.filter(category__brand__title=brand)
+            i+=1
+            object_list += Item.objects.filter(category__title=ctg, category__subcategory__title=ctg2, brand__title=brand).order_by('title')
+        if i == 0:
+            object_list = Item.objects.filter(category__title=ctg, category__subcategory__title=ctg2).order_by('title')
     paginator = Paginator(object_list, 12)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -354,11 +358,6 @@ def order_summary(request):
 class ItemDetailView(DetailView):
     model = Item
     template_name = "detail.html"
-    s = '''"""dfgfdgfdg
-    """"
-    ###l
-    ike THIS 
-    '''
 
 
 @login_required
