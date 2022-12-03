@@ -85,7 +85,7 @@
                         <div class="nav-item dropdown dropright">
                             <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">Уход за Кожей <i class="fa fa-angle-right float-right mt-1"></i></a>
                             <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="{% url 'core:home1' 'Уход за Кожей' 'Лицо' %}" class="dropdown-item">Для Дица</a>
+                                <a href="{% url 'core:home1' 'Уход за Кожей' 'Лицо' %}" class="dropdown-item">Для Лица</a>
                                 <a href="{% url 'core:home1' 'Уход за Кожей' 'Тело' %}" class="dropdown-item">Для Тела</a>
                                 <a href="{% url 'core:home1' 'Уход за Кожей' 'Тело' %}" class="dropdown-item">Для Бороды</a>
                             </div>
@@ -119,14 +119,39 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <div class="navbar-nav mr-auto py-0">
-                            <a href="{% url 'core:home' %}" class="nav-item nav-link active">Домашняя страница</a>
+
+                        <div class="nav-item dropdown dropdown">
+                            <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">Парфюмы <i class="fa fa-angle-right float-right mt-1"></i></a>
+                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
+                                <a href="{% url 'core:home1' ctg='Парфюмы' ctg2='Мужской' %}" class="dropdown-item">Мужские Парфюмы</a>
+                                <a href="{% url 'core:home1' ctg='Парфюмы' ctg2='Женский' %}" class="dropdown-item">Женские Парфюмы</a>
+                            </div>
                         </div>
-                        <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
-                            <a href="{% url 'core:order-summary' %}" class="btn px-0 ml-3">
-                                <i class="fas fa-shopping-cart text-primary"></i>
-                            </a>
+                        <div class="nav-item dropdown dropdown">
+                            <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">Уход за Кожей <i class="fa fa-angle-right float-right mt-1"></i></a>
+                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
+                                <a href="{% url 'core:home1' 'Уход за Кожей' 'Лицо' %}" class="dropdown-item">Для Лица</a>
+                                <a href="{% url 'core:home1' 'Уход за Кожей' 'Тело' %}" class="dropdown-item">Для Тела</a>
+                                <a href="{% url 'core:home1' 'Уход за Кожей' 'Тело' %}" class="dropdown-item">Для Бороды</a>
+                            </div>
                         </div>
+                        <a href="{% url 'core:home1' 'Декоративная Косметика' 'None'%}" class="nav-item nav-link">Декоративная Косметика</a>
+                        <div class="nav-item dropdown dropdown">
+                            <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">Подарочный Наборы <i class="fa fa-angle-right float-right mt-1"></i></a>
+                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
+                                <a href="{% url 'core:home1' 'Подарочный Наборы' 'Мужской' %}" class="dropdown-item">Мужские</a>
+                                <a href="{% url 'core:home1' 'Подарочный Наборы' 'Женский'%}" class="dropdown-item">Женские</a>
+                            </div>
+                        </div>
+                        <div class="nav-item dropdown dropdown">
+                            <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">Для Дома <i class="fa fa-angle-right float-right mt-1"></i></a>
+                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
+                                <a href="{% url 'core:home1' 'Для Дома' 'Диффузоры'%}" class="dropdown-item">Диффузоры</a>
+                                <a href="{% url 'core:home1' 'Для Дома' 'Бахуры'%}" class="dropdown-item">Бахуры</a>
+                                <a href="{% url 'core:home1' 'Для Дома' 'Ароматизаторы'%}" class="dropdown-item">Ароматизаторы</a>
+                            </div>
+                        </div>
+
                     </div>
                 </nav>
             </div>
